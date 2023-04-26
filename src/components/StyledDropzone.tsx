@@ -35,7 +35,7 @@ const Dropzone = styled.div<ContainerProps>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 25px;
+  margin-left: 30px;
   padding: 5px;
   border-width: 2px;
   border-radius: 2px;

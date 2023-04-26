@@ -32,7 +32,7 @@ function Layout({ children, onExport }: Props) {
     <Container>
       <Navbar onExport={onExport} />
       <Content>{children}</Content>
-      <Footer>By @datnm</Footer>
+      <Footer>@datnm</Footer>
     </Container>
   );
 }

@@ -43,6 +43,11 @@ const PreviewList = styled(Reorder.Group)`
   list-style: none;
 `;
 
+const ReorderItem = styled(Reorder.Item)`
+  margin: 0 15px;
+  border: 2px dashed #333;
+`;
+
 const ImageContainer = styled.div`
   margin: 0 auto;
   width: 500px;
@@ -256,16 +261,16 @@ function App() {
             {stringSvgFiles && stringSvgFiles.length
               ? stringSvgFiles.map((shapeItem: ShapeType, idx) => {
                   return (
-                    <Reorder.Item
+                    <ReorderItem
                       key={shapeItem.id}
-                      value={shapeItem.shape}
-                      whileDrag={{ backgroundColor: "#eee" }}
+                      value={shapeItem}
+                      whileDrag={{ border: "2px dashed #31b935" }}
                     >
                       <ShapePreviewItem
                         image={createBlobPreview(shapeItem.shape)}
                         onRemove={() => handleShapeRemove(idx)}
                       />
-                    </Reorder.Item>
+                    </ReorderItem>
                   );
                 })
               : null}

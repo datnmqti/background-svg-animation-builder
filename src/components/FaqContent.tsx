@@ -98,6 +98,22 @@ const FAQContent = () => {
             </>
           )}
         </Disclosure>
+        <Disclosure>
+          {({ open }) => (
+            <>
+              <Button>
+                <span>When I upload new SVG file, it's NOT SMOOTH, why?</span>
+                <TbChevronUp
+                  style={{ transform: open ? "rotate(180deg)" : "none" }}
+                />
+              </Button>
+              <Panel>
+                It can be svg files have not had the same number of anchors or
+                you create them in different sofwares.
+              </Panel>
+            </>
+          )}
+        </Disclosure>
       </Content>
     </Wrapper>
   );

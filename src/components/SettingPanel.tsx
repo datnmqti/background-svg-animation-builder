@@ -57,7 +57,7 @@ const SettingPanel: React.FC<Props> = ({
         Settings
       </PanelTitle>
       <PanelContent>
-        <ControlItem>
+        {/* <ControlItem>
           <Label>Viewbox Width</Label>
           <Input type="number" disabled={true} value={settings.viewBox.width} />
         </ControlItem>
@@ -68,7 +68,7 @@ const SettingPanel: React.FC<Props> = ({
             disabled={true}
             value={settings.viewBox.height}
           />
-        </ControlItem>
+        </ControlItem> */}
         <SliderBar
           min={1}
           max={50}

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { CiCircleRemove } from 'react-icons/ci';
+import styled from "styled-components";
+import { CiCircleRemove } from "react-icons/ci";
 
 const RemoveButton = styled.button`
   position: absolute;
@@ -27,8 +27,6 @@ const ShapePreviewItemContainer = styled.div`
   width: 100px;
   height: 100px;
   padding: 15px;
-  margin: 0 10px;
-  border: 2px dashed #333;
   overflow: hidden;
   text-align: center;
 
