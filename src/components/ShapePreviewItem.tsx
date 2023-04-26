@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { CiCircleRemove } from "react-icons/ci";
+import styled from "styled-components";
 
 const RemoveButton = styled.button`
   position: absolute;

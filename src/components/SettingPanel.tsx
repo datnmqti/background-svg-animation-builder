@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import ControlItem from "./common/ControlItem";
-import Label from "./common/Label";
-import Input from "./common/Input";
-import SliderBar from "./common/Slidebar";
-import Checkbox from "./common/Checkbox";
 import { CiSettings } from "react-icons/ci";
+import styled from "styled-components";
 import { Settings } from "../types/Settings";
+import Checkbox from "./common/Checkbox";
+import ControlItem from "./common/ControlItem";
+import Input from "./common/Input";
+import Label from "./common/Label";
+import SliderBar from "./common/Slidebar";
 
 const Container = styled.div`
   width: 350px;

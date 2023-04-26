@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { Disclosure } from "@headlessui/react";
 import { TbChevronUp } from "react-icons/tb";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;

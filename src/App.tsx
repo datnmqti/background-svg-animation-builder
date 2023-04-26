@@ -1,20 +1,21 @@
+import { AnimatePresence, Reorder } from "framer-motion";
+import { nanoid } from "nanoid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ReactDOMServer from "react-dom/server";
-import { AnimatePresence, Reorder } from "framer-motion";
 import styled from "styled-components";
-import { nanoid } from "nanoid";
-import Layout from "./layout";
+import CodeViewer from "./components/CodeViewer";
+import Modal from "./components/Modal";
 import SettingPanel from "./components/SettingPanel";
 import ShapePreviewItem from "./components/ShapePreviewItem";
 import StyledDropzone from "./components/StyledDropzone";
-import DefaultShape1 from "./animation-shapes/shape1";
-import DefaultShape2 from "./animation-shapes/shape2";
-import DefaultShape3 from "./animation-shapes/shape3";
-import CodeViewer from "./components/CodeViewer";
-import Modal from "./components/Modal";
+import PreviewImage from "./images/image.jpg";
+import Layout from "./layout";
 import { Settings } from "./types/Settings";
-import formatCode from "./utils/formatCode";
 import { createBlobPreview } from "./utils/createBlobPreview";
+import formatCode from "./utils/formatCode";
+import { ShapeType } from "./types/ShapeType";
+import getDValues from "./utils/getDValues";
+import { defaultShapes } from "./animation-shapes";
 
 const AreaDivider = styled.div`
   display: flex;
@@ -75,23 +76,18 @@ const CodeName = styled.p`
   font-weight: bold;
 `;
 
-type ShapeType = {
-  id: string;
-  shape: string;
-};
-
 const defaultShapeFiles: ShapeType[] = [
   {
     id: "1",
-    shape: DefaultShape1,
+    shape: defaultShapes.DefaultShape1,
   },
   {
     id: "2",
-    shape: DefaultShape2,
+    shape: defaultShapes.DefaultShape2,
   },
   {
     id: "3",
-    shape: DefaultShape3,
+    shape: defaultShapes.DefaultShape3,
   },
 ];
 
@@ -120,10 +116,6 @@ function App() {
     useState<ShapeType[]>(defaultShapeFiles);
   const [shapes, setShapes] = useState<string[]>([]);
 
-  const [image] = useState(
-    "https://www.wildlifearchives.com/wp-content/uploads/2016/09/landscape-vietnam-1474137809n4g8k-1280x853.jpg"
-  );
-
   const handleDurationChange = (value: number) => {
     setSettings((prev) => ({ ...prev, duration: value }));
   };
@@ -151,21 +143,6 @@ function App() {
       newData.splice(idx, 1);
       return newData;
     });
-  };
-
-  const getDValuesFrom = (svgFiles: ShapeType[]) => {
-    const result: string[] = [];
-    svgFiles.forEach((item, idx) => {
-      // TODO: Reseach this, when move this regex out loop, it doesn't work as expected
-      const dValueRegx = /d=(?:"|')(.*[Z|z])(?:"|')/g;
-      const matches = dValueRegx.exec(item.shape);
-
-      if (matches && matches[1]) {
-        result.push(matches[1]);
-      }
-    });
-
-    return result;
   };
 
   const values = useMemo(() => {
@@ -199,7 +176,7 @@ function App() {
   };
 
   useEffect(() => {
-    const dValues = getDValuesFrom(stringSvgFiles);
+    const dValues = getDValues(stringSvgFiles);
     setShapes(dValues);
 
     const regx = /viewBox="([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)"/;
@@ -289,7 +266,7 @@ function App() {
           {values ? renderSVG(settings) : null}
 
           <ImageContainer>
-            <Image src={image} alt="" />
+            <Image src={PreviewImage} alt="" />
           </ImageContainer>
         </Preview>
       </AreaDivider>
